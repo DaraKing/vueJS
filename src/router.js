@@ -1,25 +1,58 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import Auth from './views/Auth.vue'
+import Products from './views/Products'
+import MyProducts from './views/MyProducts'
+import Auctions from './views/Auctions'
+import Constants from './js/constants'
 
 Vue.use(Router)
 
-export default new Router({
+const routes = [
+  {
+    path: '/',
+    component: Home,
+    children: [
+      {
+        path: '',
+        name: 'home',
+        component: Products
+      },
+      {
+        path: '/my-products',
+        name: 'myProducts',
+        component: MyProducts
+      },
+      {
+        path: '/auctions',
+        name: 'auctions',
+        component: Auctions
+      }
+    ]
+  },
+  {
+    path: '/auth',
+    name: 'auth',
+    component: Auth
+  }
+]
+
+const router = new Router({
   mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
-  ]
+  routes
 })
+
+export default router
+
+// router.beforeEach((to, from, next) => {
+//   if (to.name === Constants.HOME_NAME) {
+//     if (!localStorage.getItem('jwt')) {
+//       return next('auth')
+//     } else {
+//       next()
+//     }
+//   } else {
+//     next()
+//   }
+// }) TODO: uncomment after resolve login and register
