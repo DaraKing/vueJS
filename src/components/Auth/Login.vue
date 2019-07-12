@@ -2,15 +2,15 @@
     <div>
         <div v-show="!loading">
             <el-form ref="form" :model="form" label-width="120px">
-                <el-form-item label="Email">
+                <el-form-item v-bind:label="$t('email-address')">
                     <el-input v-model="form.email"></el-input>
                 </el-form-item>
-                <el-form-item label="Password">
+                <el-form-item v-bind:label="$t('password')">
                     <el-input v-model="form.password" show-password></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="onSubmit">Create</el-button>
-                    <el-button>Cancel</el-button>
+                    <el-button type="primary" @click="onSubmit">{{ $t('login') }}</el-button>
+                    <el-button>{{ $t('cancel') }}</el-button>
                 </el-form-item>
             </el-form>
         </div>

@@ -2,24 +2,24 @@
     <div>
         <div v-show="!loading">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
-                <el-form-item label="First name" prop="firstName">
+                <el-form-item v-bind:label="$t('first-name')" prop="firstName">
                     <el-input v-model="ruleForm.firstName"></el-input>
                 </el-form-item>
-                <el-form-item label="Last name" prop="lastName">
+                <el-form-item v-bind:label="$t('last-name')" prop="lastName">
                     <el-input v-model="ruleForm.lastName"></el-input>
                 </el-form-item>
-                <el-form-item label="Email" prop="email">
+                <el-form-item v-bind:label="$t('email-address')" prop="email">
                     <el-input v-model="ruleForm.email"></el-input>
                 </el-form-item>
-                <el-form-item label="Password"  prop="password">
+                <el-form-item v-bind:label="$t('password')"  prop="password">
                     <el-input v-model="ruleForm.password" show-password></el-input>
                 </el-form-item>
-                <el-form-item label="Repeat your password"  prop="passwordRepeat">
+                <el-form-item v-bind:label="$t('password-repeat')"  prop="passwordRepeat">
                     <el-input v-model="ruleForm.passwordRepeat" show-password></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm('ruleForm')">Create</el-button>
-                    <el-button @click="resetForm('ruleForm')">Reset</el-button>
+                    <el-button type="primary" @click="submitForm('ruleForm')">{{ $t('register') }}</el-button>
+                    <el-button @click="resetForm('ruleForm')">{{ $t('reset') }}</el-button>
                 </el-form-item>
             </el-form>
         </div>
