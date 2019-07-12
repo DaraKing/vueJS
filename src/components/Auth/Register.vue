@@ -96,7 +96,7 @@ export default {
         .then(response => {
           if (response.status === constants.HTTP_STATUS_OK) {
             this.loading = false
-            this.router.push('auth')
+            this.$router.go(0)
           }
           console.log(response)
         })
