@@ -1,5 +1,14 @@
 {
   "products": "Proizvodi",
   "my-products": "Moji proizvodi",
-  "auctions": "Aukcije"
+  "auctions": "Aukcije",
+  "login": "Prijava",
+  "cancel": "Odustani",
+  "register": "Registracija",
+  "reset": "Reset",
+  "email-address": "Email adresa",
+  "password": "Lozinka",
+  "first-name": "Ime",
+  "last-name": "Prezime",
+  "password-repeat": "Ponovite lozinku"
 }

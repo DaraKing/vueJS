@@ -1,5 +1,14 @@
 {
   "products": "Products",
   "my-products": "My products",
-  "auctions": "Auctions"
+  "auctions": "Auctions",
+  "login": "Login",
+  "cancel": "Cancel",
+  "register": "Register",
+  "reset": "Reset",
+  "email-address": "Email address",
+  "password": "Password",
+  "first-name": "First name",
+  "last-name": "Last name",
+  "password-repeat": "Password repeat"
 }
