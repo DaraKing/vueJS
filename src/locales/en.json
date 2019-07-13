@@ -17,5 +17,9 @@
   "product-type": "Product type",
   "product-picture": "Product picture",
   "product-description": "Product description",
-  "search": "Search"
+  "search": "Search",
+  "active-auctions": "Active auctions",
+  "create-auction": "Create auction",
+  "dialog-closing": "Are you sure to close this dialog?",
+  "create-new-auction": "Add new auction"
 }
