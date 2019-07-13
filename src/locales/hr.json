@@ -17,5 +17,9 @@
   "product-type": "Tip proizvoda",
   "product-picture": "Slika proizvoda",
   "product-description": "Opis proizvoda",
-  "search": "Pretraži"
+  "search": "Pretraži",
+  "active-auctions": "Aktivne aukcije",
+  "create-auction": "Napravi aukciju",
+  "dialog-closing": "Jeste li sigurni da zatvorite ovaj dijalog?",
+  "create-new-auction": "Dodaj novu aukciju"
 }
