@@ -1,0 +1,6 @@
+@import "../common";
+
+
+#products-container > div.el-tabs {
+  @extend %full-height;
+}

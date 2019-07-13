@@ -1,6 +1,7 @@
 {
   "products": "Products",
   "my-products": "My products",
+  "add-product": "Add product",
   "auctions": "Auctions",
   "login": "Login",
   "cancel": "Cancel",
@@ -10,5 +11,11 @@
   "password": "Password",
   "first-name": "First name",
   "last-name": "Last name",
-  "password-repeat": "Password repeat"
+  "password-repeat": "Password repeat",
+  "create": "Add",
+  "product-name": "Product name",
+  "product-type": "Product type",
+  "product-picture": "Product picture",
+  "product-description": "Product description",
+  "search": "Search"
 }

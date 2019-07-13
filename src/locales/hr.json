@@ -1,6 +1,7 @@
 {
   "products": "Proizvodi",
   "my-products": "Moji proizvodi",
+  "add-product": "Dodaj proizvod",
   "auctions": "Aukcije",
   "login": "Prijava",
   "cancel": "Odustani",
@@ -10,5 +11,11 @@
   "password": "Lozinka",
   "first-name": "Ime",
   "last-name": "Prezime",
-  "password-repeat": "Ponovite lozinku"
+  "password-repeat": "Ponovite lozinku",
+  "create": "Dodaj",
+  "product-name": "Ime proizvoda",
+  "product-type": "Tip proizvoda",
+  "product-picture": "Slika proizvoda",
+  "product-description": "Opis proizvoda",
+  "search": "Pretraži"
 }

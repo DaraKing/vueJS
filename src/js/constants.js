@@ -25,6 +25,7 @@ const REGISTER_URL = 'http://dev.ito.ba/ekomarketapi/api/account/register'
 const LOGIN_URL = 'http://dev.ito.ba/ekomarketapi/token'
 const PRODUCTS_URL = 'http://dev.ito.ba/ekomarketapi/api/products'
 const USER_PRODUCTS_URL = 'http://dev.ito.ba/ekomarketapi/api/user/products'
+const ADD_PRODUCT_URL = 'http://dev.ito.ba/ekomarketapi/api/user/products/add'
 
 export default {
   HOME_NAME,
@@ -37,5 +38,8 @@ export default {
   EMPTY_PASSWORD,
   HTTP_STATUS_OK,
   REGISTER_URL,
-  LOGIN_URL
+  LOGIN_URL,
+  PRODUCTS_URL,
+  USER_PRODUCTS_URL,
+  ADD_PRODUCT_URL
 }
