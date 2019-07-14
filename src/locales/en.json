@@ -21,5 +21,10 @@
   "active-auctions": "Active auctions",
   "create-auction": "Create auction",
   "dialog-closing": "Are you sure to close this dialog?",
-  "create-new-auction": "Add new auction"
+  "create-new-auction": "Add new auction",
+  "product": "Product",
+  "select-product": "Please select product for auction",
+  "start-price": "Start price",
+  "amount": "Amount",
+  "auction-length": "Auction length in hours"
 }

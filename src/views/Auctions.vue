@@ -14,10 +14,6 @@
                     width="30%"
                     :before-close="handleClose">
                 <AddAuction></AddAuction>
-                <span slot="footer" class="dialog-footer">
-                    <el-button @click="dialogVisible = false">{{ $t('cancel') }}</el-button>
-                    <el-button type="primary" @click="dialogVisible = false">{{ $t('create') }}</el-button>
-                </span>
             </el-dialog>
         </div>
         <el-divider></el-divider>
@@ -31,10 +27,10 @@ import AddAuction from '../components/Auctions/AddAuction'
 export default {
   name: 'Auctions',
   components: { AddAuction, ActiveAuctions },
-  data() {
+  data () {
     return {
       dialogVisible: false
-    };
+    }
   },
   methods: {
     handleClose (done) {

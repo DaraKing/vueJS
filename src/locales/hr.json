@@ -21,5 +21,10 @@
   "active-auctions": "Aktivne aukcije",
   "create-auction": "Napravi aukciju",
   "dialog-closing": "Jeste li sigurni da zatvorite ovaj dijalog?",
-  "create-new-auction": "Dodaj novu aukciju"
+  "create-new-auction": "Dodaj novu aukciju",
+  "product": "Proizvod",
+  "select-product": "Odaberite proizvod za aukciju",
+  "start-price": "Početna cijena",
+  "amount": "Količina",
+  "auction-length": "Duljina dražbe u satima"
 }
