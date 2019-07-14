@@ -3,7 +3,8 @@
     <el-table
             :data="auctions"
             height="250"
-            style="width: 100%">
+            style="width: 100%"
+            @row-click="rowClick">
         <el-table-column
                 prop="AuctionName"
                 label="Auction name"
@@ -62,6 +63,11 @@ export default {
           AuctionLocation: 'Milvoki'
         }
       ]
+    }
+  },
+  methods: {
+    rowClick (row) {
+      this.$router.push({ name: 'singleAuction', params: { auctionId: row.Id }})
     }
   }
 }
