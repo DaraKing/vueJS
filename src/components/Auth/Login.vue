@@ -47,7 +47,7 @@ export default {
         .then(response => {
           if (response.status === constants.HTTP_STATUS_OK) {
             this.loading = false
-            console.log(response)
+            common.setTokens(response.data)
           }
         })
         .catch(error => {
