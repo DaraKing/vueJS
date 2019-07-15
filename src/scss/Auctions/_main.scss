@@ -11,4 +11,38 @@
   color: $primaryFontColor;
 }
 
+.auction-timeline {
+  padding: 15px;
+}
 
+.auction-label {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 15px;
+}
+
+.auction-information {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff4081;
+}
+
+#auction-slider {
+  margin-top: 30px;
+}
+
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 14px;
+  opacity: 0.75;
+  line-height: 200px;
+  margin: 0;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n+1) {
+  background-color: #d3dce6;
+}
