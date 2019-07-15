@@ -6,6 +6,7 @@ import Products from './views/Products'
 import MyProducts from './views/MyProducts'
 import Auctions from './views/Auctions'
 import Constants from './js/constants'
+import SingleAuction from './views/SingleAuction'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ const routes = [
         path: '/auctions',
         name: 'auctions',
         component: Auctions
+      },
+      {
+        path: '/single-auction/:auctionId',
+        name: 'singleAuction',
+        component: SingleAuction
       }
     ]
   },
