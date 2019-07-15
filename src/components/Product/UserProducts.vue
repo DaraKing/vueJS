@@ -24,6 +24,7 @@
 
 <script>
 import constants from '../../js/constants'
+import common from '../../js/common'
 import Loading from '../Common/Loading'
 export default {
   name: 'UserProducts',
@@ -60,11 +61,20 @@ export default {
   },
   methods: {
     fetchUserProducts () {
-      // console.log(constants.USER_PRODUCTS_URL)
+      console.log(constants.USER_PRODUCTS_URL)
       this.loading = false
-      // this.axios.get(constants.USER_PRODUCTS_URL)
-      //   .then(response => {
-      //   })
+      this.axios.get(constants.USER_PRODUCTS_URL)
+        .then(response => {
+          console.log(response.status)
+        })
+        .catch(error => {
+          if (error.response.status === constants.HTTP_UNAUTHORIZED) {
+            let refreshErr = common.refreshToken()
+            if (refreshErr != null) {
+
+            }
+          }
+        })
     }
   }
 }
