@@ -4,6 +4,10 @@
         <Loading></Loading>
     </div>
     <div v-show="!loading">
+        <div class="search-header">
+            <el-input class="search-input" placeholder="Please input" v-model="input"></el-input>
+            <el-button icon="el-icon-search" @click="toggleSearch" circle></el-button>
+        </div>
         <el-row>
             <el-col :span="6" v-for="(product, index) in products" :key="index" :offset="index%3 > 0 ? 2 : 0">
                 <el-card :body-style="{ padding: '0px' }">
@@ -34,6 +38,7 @@ export default {
   data () {
     return {
       loading: true,
+      input: '',
       products: []
     }
   },
@@ -64,14 +69,19 @@ export default {
           }
         })
     },
-    fetchUserProducts () {
+    fetchUserProducts (nameFilter) {
+      let query = ''
+      if (nameFilter) {
+        query = '?nameFilter=' + nameFilter
+      }
       let authHeader = common.returnAuthorizationHeader()
       if (authHeader == null) {
         this.$message('You are not logged in !')
         return
       }
       this.loading = false
-      this.axios.get(constants.USER_PRODUCTS_URL, authHeader)
+      let url = constants.USER_PRODUCTS_URL + query
+      this.axios.get(url, authHeader)
         .then(response => {
           this.products = response.data
         })
@@ -86,6 +96,9 @@ export default {
             }
           }
         })
+    },
+    toggleSearch () {
+      this.fetchUserProducts(this.input)
     }
   }
 }
