@@ -5,15 +5,17 @@
     </div>
     <div v-show="!loading">
         <el-row>
-            <el-col :span="8" v-for="(product, index) in products" :key="index" :offset="index > 0 ? 2 : 0">
+            <el-col :span="6" v-for="(product, index) in products" :key="index" :offset="index%3 > 0 ? 2 : 0">
                 <el-card :body-style="{ padding: '0px' }">
-                    <img v-bind:src="product.Picture" class="image">
+                    <img src="https://picsum.photos/id/237/200/300" class="image">
                     <div style="padding: 14px;">
-                        <span>{{ product.Name }}</span>
-                        <el-divider></el-divider>
-                        <div class="bottom clearfix">
-                            <time class="product-description">{{ product.Description }}</time>
+                        <span class="product-name">{{ product.Name }}</span>
+                        <div class="bottom">
+                            <span class="product-description">{{ product.Description }}</span>
                         </div>
+                    </div>
+                    <div class="button-area">
+                        <el-button @click="deleteFromUser(product.ProductId)" type="primary" icon="el-icon-delete" circle></el-button>
                     </div>
                 </el-card>
             </el-col>
@@ -32,46 +34,55 @@ export default {
   data () {
     return {
       loading: true,
-      products: [
-        {
-          ProductId: 1,
-          UserProductId: 2,
-          Name: 'first product',
-          Sort: 'asc',
-          ProductType: 'test',
-          Description: 'lorem ipsumarka sit dorot amet kijamet',
-          Picture: 'https://picsum.photos/id/1020/4288/2848',
-          IsAddedToUser: true
-        },
-        {
-          ProductId: 1,
-          UserProductId: 2,
-          Name: 'second product',
-          Sort: 'asc',
-          ProductType: 'test',
-          Description: 'drugi desc',
-          Picture: 'https://picsum.photos/id/1024/1920/1280',
-          IsAddedToUser: true
-        }
-      ]
+      products: []
     }
   },
   mounted () {
     this.fetchUserProducts()
   },
   methods: {
-    fetchUserProducts () {
-      console.log(constants.USER_PRODUCTS_URL)
-      this.loading = false
-      this.axios.get(constants.USER_PRODUCTS_URL)
+    deleteFromUser (productId) {
+      let authHeader = common.returnAuthorizationHeader()
+      if (authHeader == null) {
+        this.$message('You are not logged in !')
+        return
+      }
+      let removeUrl = constants.REMOVE_PRODUCT_URL + productId
+      this.axios.delete(removeUrl, authHeader)
         .then(response => {
-          console.log(response.status)
+          this.$router.go(0)
         })
         .catch(error => {
           if (error.response.status === constants.HTTP_UNAUTHORIZED) {
             let refreshErr = common.refreshToken()
             if (refreshErr != null) {
-
+              // this.$router.push('auth')
+              console.log(refreshErr)
+            } else {
+              this.deleteFromUser(productId)
+            }
+          }
+        })
+    },
+    fetchUserProducts () {
+      let authHeader = common.returnAuthorizationHeader()
+      if (authHeader == null) {
+        this.$message('You are not logged in !')
+        return
+      }
+      this.loading = false
+      this.axios.get(constants.USER_PRODUCTS_URL, authHeader)
+        .then(response => {
+          this.products = response.data
+        })
+        .catch(error => {
+          if (error.response.status === constants.HTTP_UNAUTHORIZED) {
+            let refreshErr = common.refreshToken()
+            if (refreshErr != null) {
+              // this.$router.push('auth')
+              console.log(refreshErr)
+            } else {
+              this.fetchUserProducts()
             }
           }
         })

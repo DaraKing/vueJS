@@ -25,9 +25,11 @@ const REGISTER_URL = 'http://dev.ito.ba/ekomarketapi/api/account/register'
 const LOGIN_URL = 'http://dev.ito.ba/ekomarketapi/token'
 const PRODUCTS_URL = 'http://dev.ito.ba/ekomarketapi/api/products'
 const USER_PRODUCTS_URL = 'http://dev.ito.ba/ekomarketapi/api/user/products'
-const ADD_PRODUCT_URL = 'http://dev.ito.ba/ekomarketapi/api/user/products/add'
+const ADD_PRODUCT_URL = 'http://dev.ito.ba/ekomarketapi/api/user/products/add/'
+const REMOVE_PRODUCT_URL = 'http://dev.ito.ba/ekomarketapi/api/user/products/remove/'
 const ADD_AUCTION = 'http://dev.ito.ba/ekomarketapi/api/auctions'
 const SINGLE_AUCTION = 'http://dev.ito.ba/ekomarketapi/api/auctions/'
+const USER_API = 'http://dev.ito.ba/ekomarketapi/api/user/profile'
 
 export default {
   HOME_NAME,
@@ -46,5 +48,7 @@ export default {
   USER_PRODUCTS_URL,
   ADD_PRODUCT_URL,
   ADD_AUCTION,
-  SINGLE_AUCTION
+  SINGLE_AUCTION,
+  USER_API,
+  REMOVE_PRODUCT_URL
 }
