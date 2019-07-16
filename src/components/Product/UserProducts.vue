@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class="button-area">
-                        <el-button @click="deleteFromUser(product.ProductId)" type="primary" icon="el-icon-delete" circle></el-button>
+                        <el-button @click="deleteFromUser(product.ProductId, index)" type="primary" icon="el-icon-delete" circle></el-button>
                     </div>
                 </el-card>
             </el-col>
@@ -41,7 +41,7 @@ export default {
     this.fetchUserProducts()
   },
   methods: {
-    deleteFromUser (productId) {
+    deleteFromUser (productId, index) {
       let authHeader = common.returnAuthorizationHeader()
       if (authHeader == null) {
         this.$message('You are not logged in !')
@@ -50,7 +50,7 @@ export default {
       let removeUrl = constants.REMOVE_PRODUCT_URL + productId
       this.axios.delete(removeUrl, authHeader)
         .then(response => {
-          this.$router.go(0)
+          this.products.splice(index, 1)
         })
         .catch(error => {
           if (error.response.status === constants.HTTP_UNAUTHORIZED) {
