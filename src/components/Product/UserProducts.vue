@@ -32,28 +32,29 @@ export default {
   data () {
     return {
       loading: true,
-      products: [
-        {
-          ProductId: 1,
-          UserProductId: 2,
-          Name: 'first product',
-          Sort: 'asc',
-          ProductType: 'test',
-          Description: 'lorem ipsumarka sit dorot amet kijamet',
-          Picture: 'https://picsum.photos/id/1020/4288/2848',
-          IsAddedToUser: true
-        },
-        {
-          ProductId: 1,
-          UserProductId: 2,
-          Name: 'second product',
-          Sort: 'asc',
-          ProductType: 'test',
-          Description: 'drugi desc',
-          Picture: 'https://picsum.photos/id/1024/1920/1280',
-          IsAddedToUser: true
-        }
-      ]
+      products: []
+      // products: [
+      //   {
+      //     ProductId: 1,
+      //     UserProductId: 2,
+      //     Name: 'first product',
+      //     Sort: 'asc',
+      //     ProductType: 'test',
+      //     Description: 'lorem ipsumarka sit dorot amet kijamet',
+      //     Picture: 'https://picsum.photos/id/1020/4288/2848',
+      //     IsAddedToUser: true
+      //   },
+      //   {
+      //     ProductId: 1,
+      //     UserProductId: 2,
+      //     Name: 'second product',
+      //     Sort: 'asc',
+      //     ProductType: 'test',
+      //     Description: 'drugi desc',
+      //     Picture: 'https://picsum.photos/id/1024/1920/1280',
+      //     IsAddedToUser: true
+      //   }
+      // ]
     }
   },
   mounted () {
@@ -61,17 +62,22 @@ export default {
   },
   methods: {
     fetchUserProducts () {
-      console.log(constants.USER_PRODUCTS_URL)
+      let authHeader = common.returnAuthorizationHeader()
+      if (authHeader == null) {
+        this.$message('You are not logged in !')
+        return
+      }
       this.loading = false
-      this.axios.get(constants.USER_PRODUCTS_URL)
+      this.axios.get(constants.USER_PRODUCTS_URL, authHeader)
         .then(response => {
-          console.log(response.status)
+          console.log(response)
+          this.products = response.data
         })
         .catch(error => {
           if (error.response.status === constants.HTTP_UNAUTHORIZED) {
             let refreshErr = common.refreshToken()
             if (refreshErr != null) {
-
+              this.$router.push('auth')
             }
           }
         })

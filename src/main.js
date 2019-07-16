@@ -7,10 +7,10 @@ import './plugins/element.js'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import i18n from './i18n'
-import ElSearchTablePagination from 'el-search-table-pagination'
+import Vuex from 'vuex'
 
 Vue.use(VueAxios, axios)
-Vue.use(ElSearchTablePagination)
+Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
@@ -18,6 +18,17 @@ new Vue({
   router,
   store,
   i18n,
+  computed: {
+    accessToken () {
+      return store.state.accessToken
+    },
+    refreshToken () {
+      return store.state.refreshToken
+    },
+    user () {
+      return store.state.user
+    }
+  },
   render: h => h(App)
 }).$mount('#app')
 

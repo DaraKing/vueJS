@@ -1,5 +1,6 @@
 import cons from './constants'
 import axios from 'axios'
+import store from '../store'
 
 function validateEmail (email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -9,6 +10,16 @@ function validateEmail (email) {
 function setTokens (data) {
   localStorage.setItem('access_token', data.access_token)
   localStorage.setItem('refresh_token', data.refresh_token)
+  let tokens = {
+    'accessToken': data.access_token,
+    'refreshToken': data.refresh_token
+  }
+  store.commit('changeTokens', tokens)
+}
+
+function setUserInformation (data) {
+  localStorage.setItem('user', JSON.stringify(data))
+  store.commit('changeUser', data)
 }
 
 function returnLoginBody (username, password) {
@@ -34,9 +45,23 @@ function refreshToken () {
     })
 }
 
+function returnAuthorizationHeader () {
+  let accessToken = localStorage.getItem('access_token')
+  if (accessToken == null) {
+    return null
+  }
+  return {
+    headers: {
+      'Authorization': 'Bearer ' + accessToken
+    }
+  }
+}
+
 export default {
   validateEmail,
   returnLoginBody,
   setTokens,
-  refreshToken
+  refreshToken,
+  returnAuthorizationHeader,
+  setUserInformation
 }
