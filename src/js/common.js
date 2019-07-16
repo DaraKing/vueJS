@@ -14,13 +14,12 @@ function setTokens (data) {
     'accessToken': data.access_token,
     'refreshToken': data.refresh_token
   }
-  store.commit('changeTokens', tokens)
+  this.$store.commit('changeTokens', tokens)
 }
 
-function setUserInformation (data) {
-  localStorage.setItem('user', JSON.stringify(data))
-  store.commit('changeUser', data)
-}
+// function setUserInformation (data) {
+//   localStorage.setItem('user', JSON.stringify(data))
+// }
 
 function returnLoginBody (username, password) {
   return 'grant_type=password&username=' + username + '&password=' + password
@@ -62,5 +61,5 @@ export default {
   setTokens,
   refreshToken,
   returnAuthorizationHeader,
-  setUserInformation
+  // setUserInformation
 }
