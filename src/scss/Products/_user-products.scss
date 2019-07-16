@@ -25,3 +25,14 @@
 .button-area {
   text-align: center;
 }
+
+.search-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px 0px;
+}
+
+.search-input {
+  width: 30vw;
+}
