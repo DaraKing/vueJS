@@ -1,4 +1,5 @@
-import constants from 'constants'
+import cons from './constants'
+import axios from 'axios'
 
 function validateEmail (email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -21,9 +22,10 @@ function returnRefreshTokenBody () {
 
 function refreshToken () {
   let body = returnRefreshTokenBody()
-  this.axios.get(constants.LOGIN_URL, body)
+  console.log('login url: ' + body)
+  return axios.get(cons.LOGIN_URL, body)
     .then(response => {
-      if (response.status === constants.HTTP_STATUS_OK) {
+      if (response.status === cons.HTTP_STATUS_OK) {
         setTokens(response.data)
       }
     })
