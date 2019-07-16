@@ -41,20 +41,20 @@ export default {
     }
   },
   methods: {
-    getUserAPI () {
-      let authHeader = common.returnAuthorizationHeader()
-      if (authHeader == null) {
-        this.$message('You are not logged in !')
-      }
-      this.axios.get(constants.USER_API, authHeader)
-        .then(response => {
-          console.log(response.data)
-          common.setUserInformation(response.data)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    },
+    // getUserAPI () {
+    //   let authHeader = common.returnAuthorizationHeader()
+    //   if (authHeader == null) {
+    //     this.$message('You are not logged in !')
+    //   }
+    //   this.axios.get(constants.USER_API, authHeader)
+    //     .then(response => {
+    //       console.log(response.data)
+    //       common.setUserInformation(response.data)
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+    // },
     callLoginAPi () {
       let body = common.returnLoginBody(this.form.email, this.form.password)
       this.axios.post(constants.LOGIN_URL, body)
@@ -62,7 +62,7 @@ export default {
           if (response.status === constants.HTTP_STATUS_OK) {
             this.loading = false
             common.setTokens(response.data)
-            this.getUserAPI()
+            // this.getUserAPI()
           }
         })
         .catch(error => {
