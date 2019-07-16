@@ -94,12 +94,19 @@ export default {
         this.$message('You are not logged in !')
         return
       }
-      this.axios.post(apiUrl, authHeader)
+      this.axios.post(apiUrl, null, authHeader)
         .then(response => {
           console.log(response.status)
         })
         .catch(error => {
-          console.log(error)
+          if (error.response.status === constants.HTTP_UNAUTHORIZED) {
+            let refreshErr = common.refreshToken()
+            if (refreshErr != null) {
+              this.$router.push('auth')
+            } else {
+              this.addProduct()
+            }
+          }
         })
     }
   }

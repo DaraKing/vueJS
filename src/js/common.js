@@ -33,15 +33,14 @@ function returnRefreshTokenBody () {
 
 function refreshToken () {
   let body = returnRefreshTokenBody()
-  console.log('login url: ' + body)
-  return axios.get(cons.LOGIN_URL, body)
+  return axios.post(cons.LOGIN_URL, body)
     .then(response => {
       if (response.status === cons.HTTP_STATUS_OK) {
         setTokens(response.data)
       }
     })
     .catch(error => {
-      console.log(error)
+      console.log(error.response.data.error)
     })
 }
 
