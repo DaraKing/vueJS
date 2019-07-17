@@ -14,3 +14,14 @@ $primaryBgColor : #81d4fa;
   justify-content: center;
   align-items: center;
 }
+
+.search-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px 0px;
+}
+
+.search-input {
+  width: 30vw;
+}

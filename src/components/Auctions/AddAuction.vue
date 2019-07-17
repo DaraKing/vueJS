@@ -3,9 +3,8 @@
     <div v-show="!loading">
         <el-form ref="form" :model="form" label-width="120px">
             <el-form-item v-bind:label="$t('product')">
-                <el-select v-model="form.productId" :placeholder="$t('select-product')">
-                    <el-option label="Product no.1" value="1"></el-option>
-                    <el-option label="Product no.2" value="2"></el-option>
+                <el-select v-model="form.productId"  :placeholder="$t('select-product')">
+                    <el-option v-for='product in userProducts' v-bind:key="product.ProductId" :label="product.Name" :value="product.ProductId"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item v-bind:label="$t('start-price')">
@@ -19,7 +18,6 @@
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="onSubmit">{{ $t('create-new-auction') }}</el-button>
-                <el-button>{{ $t('cancel') }}</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -32,6 +30,7 @@
 <script>
 import Loading from '../Common/Loading'
 import constants from '../../js/constants'
+import common from '../../js/common'
 
 export default {
   name: 'AddAuction',
@@ -39,6 +38,7 @@ export default {
   data () {
     return {
       loading: false,
+      userProducts: [],
       form: {
         productId: '',
         startPrice: '',
@@ -47,10 +47,19 @@ export default {
       }
     }
   },
+  created () {
+    this.checkUserProducts()
+  },
   methods: {
+    checkUserProducts () {
+      if (this.$store.state.userProducts) {
+        this.userProducts = this.$store.state.userProducts
+      }
+    },
     postAuction (payload) {
+      let authHeader = common.returnAuthorizationHeader()
       this.loading = true
-      this.axios.post(constants.ADD_AUCTION, payload)
+      this.axios.post(constants.AUCTION_URL, payload, authHeader)
         .then(response => {
           console.log(response)
           this.loading = false
@@ -67,6 +76,7 @@ export default {
         'Amount': parseInt(this.form.amount),
         'AuctionLengthInHours': parseInt(this.form.auctionLength)
       }
+      console.log(addAuctionPayload)
       this.postAuction(addAuctionPayload)
     }
   }
