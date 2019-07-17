@@ -55,6 +55,14 @@ function returnAuthorizationHeader () {
   }
 }
 
+function returnFilterQuery (nameFilter) {
+  let query = ''
+  if (nameFilter) {
+    query = '?nameFilter=' + nameFilter
+  }
+  return query
+}
+
 export default {
   validateEmail,
   returnLoginBody,
@@ -62,4 +70,5 @@ export default {
   refreshToken,
   returnAuthorizationHeader,
   // setUserInformation
+  returnFilterQuery
 }

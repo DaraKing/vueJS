@@ -50,7 +50,7 @@ export default {
   methods: {
     postAuction (payload) {
       this.loading = true
-      this.axios.post(constants.ADD_AUCTION, payload)
+      this.axios.post(constants.AUCTION_URL, payload)
         .then(response => {
           console.log(response)
           this.loading = false

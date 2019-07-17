@@ -70,10 +70,7 @@ export default {
         })
     },
     fetchUserProducts (nameFilter) {
-      let query = ''
-      if (nameFilter) {
-        query = '?nameFilter=' + nameFilter
-      }
+      let query = common.returnFilterQuery(nameFilter)
       let authHeader = common.returnAuthorizationHeader()
       if (authHeader == null) {
         this.$message('You are not logged in !')
@@ -105,5 +102,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "src/scss/common";
 @import "src/scss/Products/user-products";
 </style>
