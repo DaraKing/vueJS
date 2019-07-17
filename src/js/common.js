@@ -63,6 +63,11 @@ function returnFilterQuery (nameFilter) {
   return query
 }
 
+function setProducts (data) {
+  localStorage.setItem('user_products', JSON.stringify(data))
+  store.commit('changeUserProducts', data)
+}
+
 export default {
   validateEmail,
   returnLoginBody,
@@ -70,5 +75,6 @@ export default {
   refreshToken,
   returnAuthorizationHeader,
   // setUserInformation
-  returnFilterQuery
+  returnFilterQuery,
+  setProducts
 }

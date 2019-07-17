@@ -72,6 +72,7 @@ export default {
     fetchUserProducts (nameFilter) {
       let query = common.returnFilterQuery(nameFilter)
       let authHeader = common.returnAuthorizationHeader()
+      let initialFetch = nameFilter === undefined || nameFilter === null
       if (authHeader == null) {
         this.$message('You are not logged in !')
         return
@@ -81,8 +82,14 @@ export default {
       this.axios.get(url, authHeader)
         .then(response => {
           this.products = response.data
+          if (initialFetch) {
+            console.log('uslo')
+            console.log(response.data)
+            common.setProducts(response.data)
+          }
         })
         .catch(error => {
+          console.log(error)
           if (error.response.status === constants.HTTP_UNAUTHORIZED) {
             let refreshErr = common.refreshToken()
             if (refreshErr != null) {
