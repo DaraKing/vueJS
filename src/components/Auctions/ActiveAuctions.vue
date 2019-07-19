@@ -80,9 +80,8 @@ export default {
   methods: {
     fetchActiveAuctions (nameFilter) {
       let query = common.returnFilterQuery(nameFilter)
-      let authHeader = common.returnAuthorizationHeader()
       let url = constants.AUCTION_URL + query
-      this.axios.get(url, authHeader)
+      this.axios.get(url)
         .then(response => {
           this.auctions = response.data.Result
         })
