@@ -14,27 +14,7 @@
 <script>
 export default {
   name: 'Timeline',
-  props: ['data'],
-  data () {
-    return {
-      activities: []
-    }
-  },
-  created () {
-    this.makeArray()
-  },
-  methods: {
-    makeArray () {
-      this.activities.push({
-        'content': 'Start date',
-        'timestamp': this.data.StartDate
-      },
-      {
-        'content': 'End date',
-        'timestamp': this.data.EndDate
-      })
-    }
-  }
+  props: ['activities']
 }
 </script>
 

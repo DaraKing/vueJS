@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-row :gutter="20">
+        <el-row :gutter="20" v-if="data">
             <el-col :span="8"><div>
                 <span class="auction-label">Product name</span>
                 <span class="auction-information">{{ data.ProductName }}</span>
@@ -14,7 +14,7 @@
                 <span class="auction-information">{{ data.CurrentPrice }}</span>
             </div></el-col>
         </el-row>
-        <el-row :gutter="20">
+        <el-row :gutter="20" v-if="data">
             <el-col :span="8"><div>
                 <span class="auction-label">Start price</span>
                 <span class="auction-information">{{ data.StartPrice }}</span>
