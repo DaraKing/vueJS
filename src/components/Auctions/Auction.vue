@@ -18,6 +18,11 @@
                     </el-row>
                 </el-col>
             </el-row>
+            <el-row>
+                <el-col :span="24">
+                    <AddAuctionImage v-bind:auction-id="auction.AuctionId"></AddAuctionImage>
+                </el-col>
+            </el-row>
         </div>
     </div>
 
@@ -29,9 +34,11 @@ import constants from '../../js/constants'
 import Timeline from './Info/Timeline'
 import Primary from './Info/Primary'
 import Slider from './Info/Slider'
+import AddAuctionImage from './AddAuctionImage'
+
 export default {
   name: 'Auction',
-  components: { Slider, Primary, Timeline, Loading },
+  components: { Slider, Primary, Timeline, Loading, AddAuctionImage },
   props: ['auctionId'],
   data () {
     return {

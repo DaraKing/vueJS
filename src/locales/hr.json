@@ -32,5 +32,6 @@
   "select-product": "Odaberite proizvod za aukciju",
   "start-price": "Početna cijena",
   "amount": "Količina",
-  "auction-length": "Duljina dražbe u satima"
+  "auction-length": "Duljina dražbe u satima",
+  "add-more-images": "Dodaj više slika"
 }
