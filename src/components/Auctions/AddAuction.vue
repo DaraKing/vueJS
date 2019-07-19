@@ -3,8 +3,8 @@
     <div v-show="!loading">
         <el-form ref="form" :model="form" label-width="120px">
             <el-form-item v-bind:label="$t('product')">
-                <el-select v-model="form.productId"  :placeholder="$t('select-product')">
-                    <el-option v-for='product in userProducts' v-bind:key="product.ProductId" :label="product.Name" :value="product.ProductId"></el-option>
+                <el-select v-model="form.userProductId"  :placeholder="$t('select-product')">
+                    <el-option v-for='product in userProducts' v-bind:key="product.UserProductId" :label="product.Name" :value="product.UserProductId"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item v-bind:label="$t('start-price')">
@@ -40,7 +40,7 @@ export default {
       loading: false,
       userProducts: [],
       form: {
-        productId: '',
+        userProductId: '',
         startPrice: '',
         amount: '',
         auctionLength: ''
@@ -55,6 +55,7 @@ export default {
       if (this.$store.state.userProducts) {
         this.userProducts = this.$store.state.userProducts
       }
+      console.log(this.userProducts)
     },
     postAuction (payload) {
       let authHeader = common.returnAuthorizationHeader()
@@ -71,12 +72,11 @@ export default {
     },
     onSubmit () {
       let addAuctionPayload = {
-        'UserProductId': parseInt(this.form.productId),
-        'StartPrice': parseInt(this.form.startPrice),
+        'UserProductId': parseInt(this.form.userProductId),
+        'StartPrice': parseFloat(this.form.startPrice),
         'Amount': parseInt(this.form.amount),
         'AuctionLengthInHours': parseInt(this.form.auctionLength)
       }
-      console.log(addAuctionPayload)
       this.postAuction(addAuctionPayload)
     }
   }

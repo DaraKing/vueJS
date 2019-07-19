@@ -83,22 +83,11 @@ export default {
         .then(response => {
           this.products = response.data
           if (initialFetch) {
-            console.log('uslo')
-            console.log(response.data)
             common.setProducts(response.data)
           }
         })
         .catch(error => {
           console.log(error)
-          if (error.response.status === constants.HTTP_UNAUTHORIZED) {
-            let refreshErr = common.refreshToken()
-            if (refreshErr != null) {
-              // this.$router.push('auth')
-              console.log(refreshErr)
-            } else {
-              this.fetchUserProducts()
-            }
-          }
         })
     },
     toggleSearch () {

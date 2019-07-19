@@ -14,7 +14,7 @@ function setTokens (data) {
     'accessToken': data.access_token,
     'refreshToken': data.refresh_token
   }
-  this.$store.commit('changeTokens', tokens)
+  store.commit('changeTokens', tokens)
 }
 
 // function setUserInformation (data) {
@@ -35,6 +35,7 @@ function refreshToken () {
   return axios.post(cons.LOGIN_URL, body)
     .then(response => {
       if (response.status === cons.HTTP_STATUS_OK) {
+        console.log(data)
         setTokens(response.data)
       }
     })
@@ -76,5 +77,6 @@ export default {
   returnAuthorizationHeader,
   // setUserInformation
   returnFilterQuery,
-  setProducts
+  setProducts,
+  returnRefreshTokenBody
 }
