@@ -56,7 +56,7 @@ export default {
         })
     },
     goBack () {
-      console.log('go back')
+      this.$router.push({ name: 'auctions' })
     },
     makeArray () {
       this.activities.push({
