@@ -20,10 +20,12 @@
                 width="180">
         </el-table-column>
         <el-table-column
+                :formatter="formDate"
                 prop="StartDate"
                 label="Start date">
         </el-table-column>
         <el-table-column
+                :formatter="formDate"
                 prop="EndDate"
                 label="End date">
         </el-table-column>
@@ -48,6 +50,15 @@ export default {
     this.fetchActiveAuctions()
   },
   methods: {
+    formDate (row) {
+      if (row.StartDate !== '') {
+        let date = new Date(row.StartDate)
+        return date.toUTCString()
+      } else {
+        let date = new Date(row.EndDate)
+        return date.toUTCString()
+      }
+    },
     fetchActiveAuctions (nameFilter) {
       let query = common.returnFilterQuery(nameFilter)
       let url = constants.AUCTION_URL + query
