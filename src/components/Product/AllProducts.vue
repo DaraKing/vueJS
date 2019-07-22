@@ -90,7 +90,6 @@ export default {
       let apiUrl = constants.ADD_PRODUCT_URL + productId
       this.axios.post(apiUrl)
         .then(response => {
-          console.log(response.status)
         })
         .catch(error => {
           console.log(error)
