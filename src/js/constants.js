@@ -1,4 +1,4 @@
-const HOME_NAME = 'home'
+const AUTH_ROUTE_NAME = 'auth'
 
 /*
       ERRORS
@@ -32,7 +32,7 @@ const SINGLE_AUCTION = 'http://dev.ito.ba/ekomarketapi/api/auctions/'
 const USER_API = 'http://dev.ito.ba/ekomarketapi/api/user/profile'
 
 export default {
-  HOME_NAME,
+  AUTH_ROUTE_NAME,
   INVALID_EMAIL,
   PASSWORD_DONT_MATCH,
   PASSWORD_WEAK,

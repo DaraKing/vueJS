@@ -47,7 +47,6 @@
 
 <script>
 import constants from '../../js/constants'
-import common from '../../js/common'
 export default {
   name: 'Products',
   data () {
@@ -89,24 +88,12 @@ export default {
     },
     addProduct (productId) {
       let apiUrl = constants.ADD_PRODUCT_URL + productId
-      let authHeader = common.returnAuthorizationHeader()
-      if (authHeader == null) {
-        this.$message('You are not logged in !')
-        return
-      }
-      this.axios.post(apiUrl, null, authHeader)
+      this.axios.post(apiUrl)
         .then(response => {
           console.log(response.status)
         })
         .catch(error => {
-          if (error.response.status === constants.HTTP_UNAUTHORIZED) {
-            let refreshErr = common.refreshToken()
-            if (refreshErr != null) {
-              this.$router.push('auth')
-            } else {
-              this.addProduct()
-            }
-          }
+          console.log(error)
         })
     }
   }

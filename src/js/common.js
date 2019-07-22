@@ -3,6 +3,7 @@ import axios from 'axios'
 import store from '../store'
 
 function validateEmail (email) {
+  // eslint-disable-next-line
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return re.test(String(email).toLowerCase())
 }
@@ -14,12 +15,8 @@ function setTokens (data) {
     'accessToken': data.access_token,
     'refreshToken': data.refresh_token
   }
-  this.$store.commit('changeTokens', tokens)
+  store.commit('changeTokens', tokens)
 }
-
-// function setUserInformation (data) {
-//   localStorage.setItem('user', JSON.stringify(data))
-// }
 
 function returnLoginBody (username, password) {
   return 'grant_type=password&username=' + username + '&password=' + password
@@ -29,31 +26,39 @@ function returnRefreshTokenBody () {
   let refreshToken = localStorage.getItem('refresh_token')
   return 'grant_type=refresh_token&refresh_token=' + refreshToken
 }
+//
+// function refreshToken () {
+//   let body = returnRefreshTokenBody()
+//   return axios.post(cons.LOGIN_URL, body)
+//     .then(response => {
+//       if (response.status === cons.HTTP_STATUS_OK) {
+//         console.log(data)
+//         setTokens(response.data)
+//       }
+//     })
+//     .catch(error => {
+//       console.log(error.response.data.error)
+//     })
+// }
 
-function refreshToken () {
-  let body = returnRefreshTokenBody()
-  return axios.post(cons.LOGIN_URL, body)
-    .then(response => {
-      if (response.status === cons.HTTP_STATUS_OK) {
-        setTokens(response.data)
-      }
-    })
-    .catch(error => {
-      console.log(error.response.data.error)
-    })
+function returnUserProducts (nameFilter) {
+  let query = returnFilterQuery(nameFilter)
+  let url = cons.USER_PRODUCTS_URL + query
+
+  return axios.get(url)
 }
 
-function returnAuthorizationHeader () {
-  let accessToken = localStorage.getItem('access_token')
-  if (accessToken == null) {
-    return null
-  }
-  return {
-    headers: {
-      'Authorization': 'Bearer ' + accessToken
-    }
-  }
-}
+// function returnAuthorizationHeader () {
+//   let accessToken = localStorage.getItem('access_token')
+//   if (accessToken == null) {
+//     return null
+//   }
+//   return {
+//     headers: {
+//       'Authorization': 'Bearer ' + accessToken
+//     }
+//   }
+// }
 
 function returnFilterQuery (nameFilter) {
   let query = ''
@@ -72,9 +77,10 @@ export default {
   validateEmail,
   returnLoginBody,
   setTokens,
-  refreshToken,
-  returnAuthorizationHeader,
-  // setUserInformation
+  // refreshToken,
+  // returnAuthorizationHeader,
   returnFilterQuery,
-  setProducts
+  setProducts,
+  returnRefreshTokenBody,
+  returnUserProducts
 }

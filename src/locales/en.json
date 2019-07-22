@@ -32,5 +32,6 @@
   "select-product": "Please select product for auction",
   "start-price": "Start price",
   "amount": "Amount",
-  "auction-length": "Auction length in hours"
+  "auction-length": "Auction length in hours",
+  "add-more-images": "Add more images"
 }
