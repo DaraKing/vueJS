@@ -54,13 +54,20 @@ export default {
     checkUserProducts () {
       if (this.$store.state.userProducts) {
         this.userProducts = this.$store.state.userProducts
+      } else {
+        let userProductsRequest = common.returnUserProducts()
+        userProductsRequest.then(response => {
+          this.userProducts = response.data
+          common.setProducts(response.data)
+        })
+          .catch(error => {
+            console.log(error)
+          })
       }
-      console.log(this.userProducts)
     },
     postAuction (payload) {
-      let authHeader = common.returnAuthorizationHeader()
       this.loading = true
-      this.axios.post(constants.AUCTION_URL, payload, authHeader)
+      this.axios.post(constants.AUCTION_URL, payload)
         .then(response => {
           console.log(response)
           this.loading = false

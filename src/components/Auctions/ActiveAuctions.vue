@@ -60,7 +60,7 @@ export default {
         })
     },
     rowClick (row) {
-      this.$router.push({ name: 'singleAuction', params: { auctionId: row.Id }})
+      this.$router.push({ name: 'singleAuction', params: { auctionId: row.Id } })
     },
     toggleSearch () {
       this.fetchActiveAuctions(this.input)

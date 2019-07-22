@@ -21,7 +21,8 @@ axios.interceptors.response.use(
   error => {
     console.log('ERR ', error)
     const status = error.response ? error.response.status : null
-    if (status !== 401) {
+    console.log(status)
+    if (status !== cons.HTTP_UNAUTHORIZED) {
       return Promise.reject(error)
     }
     let body = common.returnRefreshTokenBody()
@@ -33,7 +34,7 @@ axios.interceptors.response.use(
         return axios(error.response.config)
       })
       .catch(error => {
-        this.$router.push('auth')
+        router.push('auth')
         return Promise.reject(error)
       })
   }

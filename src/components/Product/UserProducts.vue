@@ -47,48 +47,30 @@ export default {
   },
   methods: {
     deleteFromUser (productId, index) {
-      let authHeader = common.returnAuthorizationHeader()
-      if (authHeader == null) {
-        this.$message('You are not logged in !')
-        return
-      }
       let removeUrl = constants.REMOVE_PRODUCT_URL + productId
-      this.axios.delete(removeUrl, authHeader)
+      this.axios.delete(removeUrl)
         .then(response => {
           this.products.splice(index, 1)
         })
         .catch(error => {
-          if (error.response.status === constants.HTTP_UNAUTHORIZED) {
-            let refreshErr = common.refreshToken()
-            if (refreshErr != null) {
-              // this.$router.push('auth')
-              console.log(refreshErr)
-            } else {
-              this.deleteFromUser(productId)
-            }
-          }
+          console.log(error)
         })
     },
     fetchUserProducts (nameFilter) {
-      let query = common.returnFilterQuery(nameFilter)
-      let authHeader = common.returnAuthorizationHeader()
-      let initialFetch = nameFilter === undefined || nameFilter === null
-      if (authHeader == null) {
-        this.$message('You are not logged in !')
-        return
-      }
       this.loading = false
-      let url = constants.USER_PRODUCTS_URL + query
-      this.axios.get(url, authHeader)
-        .then(response => {
-          this.products = response.data
-          if (initialFetch) {
-            common.setProducts(response.data)
-          }
-        })
+      let initialFetch = nameFilter === undefined || nameFilter === null
+      let userProductsRequest = common.returnUserProducts(nameFilter)
+
+      userProductsRequest.then(response => {
+        this.products = response.data
+        if (initialFetch) {
+          common.setProducts(response.data)
+        }
+      })
         .catch(error => {
           console.log(error)
         })
+      this.products = JSON.parse(localStorage.getItem('user_products'))
     },
     toggleSearch () {
       this.fetchUserProducts(this.input)

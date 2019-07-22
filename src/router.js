@@ -51,14 +51,14 @@ const router = new Router({
 
 export default router
 
-// router.beforeEach((to, from, next) => {
-//   if (to.name === Constants.HOME_NAME) {
-//     if (!localStorage.getItem('jwt')) {
-//       return next('auth')
-//     } else {
-//       next()
-//     }
-//   } else {
-//     next()
-//   }
-// }) TODO: uncomment after resolve login and register
+router.beforeEach((to, from, next) => {
+  if (to.name !== Constants.AUTH_ROUTE_NAME) {
+    if (!localStorage.getItem('access_token') || !localStorage.getItem('refresh_token')) {
+      return next('auth')
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
