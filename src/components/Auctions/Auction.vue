@@ -66,13 +66,15 @@ export default {
       this.$router.push({ name: 'auctions' })
     },
     makeArray () {
+      let startDate = new Date(this.auction.StartDate).toUTCString()
+      let endDate = new Date(this.auction.EndDate).toUTCString()
       this.activities.push({
         'content': 'Start date',
-        'timestamp': this.auction.StartDate
+        'timestamp': startDate
       },
       {
         'content': 'End date',
-        'timestamp': this.auction.EndDate
+        'timestamp': endDate
       })
     }
   }

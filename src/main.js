@@ -16,6 +16,14 @@ Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
+Vue.filter('formatDate', function (value) {
+  if (!value) return ''
+  let event = new Date(value)
+  console.log(value)
+  console.log(event.toDateString())
+  return event.toDateString()
+})
+
 axios.interceptors.response.use(
   response => response,
   error => {
