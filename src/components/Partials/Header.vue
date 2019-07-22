@@ -6,7 +6,7 @@
                 mode="horizontal"
                 background-color="#545c64"
                 text-color="#f5f5f5"
-                default-active="1"
+                :default-active="activeLink"
                 active-text-color="#b2ebf2">
             <el-menu-item index="1" :route="{name: 'home'}">
                 {{ $t('products') }}
@@ -29,7 +29,21 @@ export default {
   components: { LocaleChanger },
   data () {
     return {
-      activeIndex: '1'
+      activeIndex: '1',
+      activeLink: null
+    }
+  },
+  mounted () {
+    switch (this.$route.name) {
+      case 'home':
+        this.activeLink = '1'
+        break
+      case 'myProducts':
+        this.activeLink = '2'
+        break
+      case 'auctions':
+        this.activeLink = '3'
+        break
     }
   }
 }
