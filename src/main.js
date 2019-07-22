@@ -19,9 +19,7 @@ Vue.config.productionTip = false
 axios.interceptors.response.use(
   response => response,
   error => {
-    console.log('ERR ', error)
     const status = error.response ? error.response.status : null
-    console.log(status)
     if (status !== cons.HTTP_UNAUTHORIZED) {
       return Promise.reject(error)
     }

@@ -69,7 +69,7 @@ export default {
       this.loading = true
       this.axios.post(constants.AUCTION_URL, payload)
         .then(response => {
-          console.log(response)
+          this.$router.go(0)
           this.loading = false
         })
         .catch(error => {
