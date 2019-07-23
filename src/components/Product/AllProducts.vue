@@ -10,7 +10,7 @@
     <el-row v-for="product in paginatedData()" v-bind:key="product.Id">
             <el-col :span="6">
                 <div class="product-information">
-                    {{ product.Image }}
+                    <img src="https://picsum.photos/id/1002/4312/2868" class="product-image">
                 </div>
             </el-col>
             <el-col :span="4">
