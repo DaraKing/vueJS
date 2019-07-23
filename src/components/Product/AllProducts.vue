@@ -90,6 +90,10 @@ export default {
       let apiUrl = constants.ADD_PRODUCT_URL + productId
       this.axios.post(apiUrl)
         .then(response => {
+          if (response.status === constants.HTTP_STATUS_OK) {
+            this.$message('Successfully added!')
+            this.$router.push({ name: 'myProducts' })
+          }
         })
         .catch(error => {
           console.log(error)
